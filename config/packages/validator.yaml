@@ -1,5 +1,8 @@
 framework:
     validation:
+        enabled: true
+        auto_mapping:
+            - App\Entity
         email_validation_mode: html5
 
         # Enables validator auto-mapping support.
@@ -10,4 +13,7 @@ framework:
 when@test:
     framework:
         validation:
+            enabled: true
+            auto_mapping:
+                - App\Entity
             not_compromised_password: false

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log In{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="text-center mb-4">
+                    <h1 class="h3">Welcome Back!</h1>
+                    <p>Please log in to continue</p>
+                </div>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                </div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="alert alert-info">
+                                    You are logged in as {{ app.user.userIdentifier }},
+                                    <a href="{{ path('app_logout') }}" class="text-primary">Logout</a>
+                                </div>
+                            {% endif %}
+
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                       class="form-control" autocomplete="email" required autofocus>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">Password</label>
+                                <input type="password" name="password" id="inputPassword"
+                                       class="form-control" autocomplete="current-password" required>
+                            </div>
+
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}">
+
+                            <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
