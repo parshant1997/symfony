@@ -32,8 +32,8 @@ services:
       - "8080:80"
     environment:
       PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: Symfony@986#
+      PMA_USER: symfony_user
+      PMA_PASSWORD: symfony_password
     depends_on:
       - db
 
